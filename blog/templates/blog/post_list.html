@@ -1,15 +1,31 @@
-   {% block content %}
-	<title>ATS BLOG</title>
+  {% load staticfiles %}
+<html>
+    <head>
+        <title>ATS Education Blog</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    </head>
+    <body>
+        <div class="page-header">
+    <h1><a href="/">ATS Education Blog</a></h1>
+</div>
 
-
- 
-    {% for post in posts %}
-        <div class="post">
-            <p class="date">created: {{ post.create_date|date:'d-m-Y' }}</p>
-            <h1><a >{{ post.title }}</a></h1>
-            <p>{{ post.text|truncatechars:200 }}</p>
+<div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+            {% for post in posts %}
+                <div class="post">
+                    <div class="date">
+                        <p>published: {{ post.publish_date }}</p>
+                    </div>
+                    <h1><a href="">{{ post.title }}</a></h1>
+                    <p>{{ post.text|linebreaksbr }}</p>
+                </div>
+            {% endfor %}
         </div>
-    {% endfor %}
-{% endblock content %}
+    </div>
+</div>
 
-
+    </body>
+</html>
